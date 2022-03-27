@@ -18,6 +18,12 @@ ${dismissPopUp}     //span[@class='ddgsi badge-link__close js-badge-link-dismiss
 ${dismissPopUp2}    //span[@class='ddgsi badge-link__close js-badge-link-close']
 ${body}     //body
 ${expectedColor}    rgba(34, 34, 34, 1)
+#Identifiers for Language Change
+${AllSettings}      //a[contains(@class,'js-set-general')]
+${LanguageDropdown}     //select[@id='setting_kad']
+${TitlePage}        //h4[@class='set-head__title']
+
+
 
 
 *** Keywords ***
@@ -61,4 +67,16 @@ Change Theme
     ${color1}    Call Method    ${page}      value_of_css_property       background-color
     Should Not Be Equal As Strings    ${color}  ${color1}
     Should Be Equal As Strings    ${color1}  ${expectedColor}
+
+#In this test we change the tab inside settings, as we are already there for the Theme change, to "General"
+#In there we find the Language dropdown, and select a language, the Challenge said Litvo, which I can't even find in google :P So I picked another one
+#Afterwards we compare the text in the Page Title to the expected title in the new language
+Change Language
+    Wait Until Element Is Visible    ${AllSettings}
+    Click Element    ${AllSettings}
+    Wait Until Element Is Visible    ${LanguageDropdown}
+    Click Element    ${LanguageDropdown}
+    Select From List By Value    ${languagedropdown}    lt_LT
+    Element Text Should Be    ${titlepage}      Visi nustatymai
+
 

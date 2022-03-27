@@ -7,5 +7,6 @@ DDG Search for MJ
     Search For Michael Jordan
     Verify Results Of Search
     Change Theme
+    Change Language
     Close All Browsers
 
